@@ -16,6 +16,7 @@
  app.use('/api/bookings', bookingRoutes);
  app.use('/api/admin', adminRoutes);
 const PORT = process.env.PORT || 5000;
+console.log("MONGODB_URI from env:", process.env.MONGO_URI);
  mongoose.connect(process.env.MONGO_URI)
  .then(() => {
  console.log('Mongo connected');
