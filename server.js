@@ -22,7 +22,7 @@ app.use('/api/admin', adminRoutes);
 
 // ✅ health check route
 app.get('/', (req, res) => {
-  res.send('✅ Server is up and running!');
+  res.send('✅ Server is up and running and BoomBoom!');
 });
 
 const PORT = process.env.PORT || 5000;
