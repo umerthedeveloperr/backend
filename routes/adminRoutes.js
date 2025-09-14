@@ -41,12 +41,7 @@ router.get("/bookings", auth, async (req, res) => {
     event: b.eventId ? { id: b.eventId._id, title: b.eventId.title } : null,
     status: b.status,
     createdAt: b.createdAt,
-    screenshot: b.paymentScreenshot
-      ? {
-          data: b.paymentScreenshot.data.toString("base64"),
-          contentType: b.paymentScreenshot.contentType || "image/png",
-        }
-      : null,
+    // screenshot field removed for speed
   }));
   res.json(mapped);
 });
