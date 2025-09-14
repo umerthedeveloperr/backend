@@ -4,7 +4,7 @@ const bookingSchema = new mongoose.Schema({
   name: String,
   email: String,
   bank : String,
-  Sender : String,
+  sender : String,
   paymentID : String,
   status: { type: String, enum: ["Pending", "Confirmed"], default: "Pending" },
   ticketPdf: {
