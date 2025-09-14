@@ -38,7 +38,9 @@ router.get("/bookings", auth, async (req, res) => {
     id: b._id,
     name: b.name,
     email: b.email,
-    event: b.eventId ? { id: b.eventId._id, title: b.eventId.title } : null,
+    event: b.bank,
+    event: b.Sender,
+    event: b.paymentID,
     status: b.status,
     createdAt: b.createdAt,
     // screenshot field removed for speed
@@ -46,15 +48,15 @@ router.get("/bookings", auth, async (req, res) => {
   res.json(mapped);
 });
 // endpoint to fetch screenshot (admin only)
-router.get("/bookings/:id/screenshot", auth, async (req, res) => {
-  const b = await Booking.findById(req.params.id);
-  if (!b || !b.paymentScreenshot) return res.status(404).send("Not found");
-  const mimeType = b.paymentScreenshot.contentType || "image/png";
-  const base64 = b.paymentScreenshot.data.toString("base64");
-  res.json({
-    screenshot: `data:${mimeType};base64,${base64}`,
-  });
-});
+// router.get("/bookings/:id/screenshot", auth, async (req, res) => {
+//   const b = await Booking.findById(req.params.id);
+//   if (!b || !b.paymentScreenshot) return res.status(404).send("Not found");
+//   const mimeType = b.paymentScreenshot.contentType || "image/png";
+//   const base64 = b.paymentScreenshot.data.toString("base64");
+//   res.json({
+//     screenshot: `data:${mimeType};base64,${base64}`,
+//   });
+// });
 // confirm booking: generate PDF ticket, save PDF buffer to booking, update status, send email
 router.put("/bookings/:id/confirm", auth, async (req, res) => {
   try {
